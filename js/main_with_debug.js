@@ -1,8 +1,6 @@
 //initialize function called when the script loads
 function initialize(){
-  cities();
-  loadData();
-  debugAjax();
+	cities();
 };
 
 //create table with cities and populations
@@ -30,7 +28,7 @@ function cities(){
 	//create table element
 	var table = document.createElement("table");
 
-	//create headers for city and population
+	//create header and append to table
 	var headerRow = document.createElement("tr");
 	table.appendChild(headerRow);
 
@@ -78,7 +76,7 @@ function addColumns(cityPop){
 	})
 };
 
-//randomize text color on hover-over
+//randomize text color on hover-over 
 function addEvents(){
 	table = document.querySelector("table");
 	document.querySelector("table").addEventListener("mouseover", function(){
@@ -105,33 +103,6 @@ function addEvents(){
 
 	//event listener for the click
 	table.addEventListener("click", clickme)
-};
-
-//load data from geojson world city pop
-function loadData(){
-  var cities
-
-  fetch('data/MegaCities.geojson')  //get data from file
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(request){
-      cities = response;
-      console.log(cities);
-    })
-}
-
-// insert text from datafile in div
-function debugCallback(myData){
-	document.querySelector("#mydiv").insertAdjacentHTML('beforeend',"GeoJSON data: " + JSON.stringify(myData));
-};
-
-function debugAjax(){
-	fetch("data/MegaCities.geojson")
-		.then(function(response){
-			return response.json();
-		})
-		.then(debugCallback)
 };
 
 //call the initialize function when the document has loaded
